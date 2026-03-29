@@ -2266,7 +2266,7 @@ function genCertificate(name) {
 
 function App(){
   // AUTH
-  const[auth,setAuth]=useState(()=>{try{const d=JSON.parse(localStorage.getItem('ni_auth')||'{}');if(d.email&&d.code&&d.ts&&Date.now()-d.ts<3*365*24*60*60*1000)return d;return null}catch{return null}});
+  const[auth,setAuth]=useState(()=>{try{const d=JSON.parse(localStorage.getItem('ni_auth')||'{}');var exp=d.expiry||3*365*24*60*60*1000;if(d.email&&d.code&&d.ts&&Date.now()-d.ts<exp)return d;return null}catch{return null}});
   const[lStep,setLStep]=useState(1);const[lEmail,setLEmail]=useState('');const[lName,setLName]=useState('');const[lCity,setLCity]=useState('');const[lCode,setLCode]=useState('');const[lMsg,setLMsg]=useState(null);const[lLoad,setLLoad]=useState(false);
   async function genHash(email,minuteToken){const d=new TextEncoder().encode(email.toLowerCase().trim()+'NI_HENRY_2026_MASTER'+String(minuteToken));const h=await crypto.subtle.digest('SHA-256',d);return Array.from(new Uint8Array(h)).map(b=>b.toString(16).padStart(2,'0')).join('').substring(0,8).toUpperCase()}
   async function reqAccess(){
