@@ -437,7 +437,7 @@ function renderCourses(){
     var unlocked=isUnlocked(c.file);
     var loggedIn=!!user;
     var canClick=unlocked&&loggedIn;
-    cards+='<div class="course'+((!canClick)?' locked':'')+'"'+(canClick?' onclick="window.open(''+c.file+'','_self')"':'')+'>'
+    cards+='<div class="course'+((!canClick)?' locked':'')+'"'+(canClick?' onclick="window.open(&#39;'+c.file+'&#39;,&#39;_self&#39;)"':'')+'>'
       +'<div class="course-img"><img src="'+BANNER+'" alt="'+c.name+'">'
       +'<div class="badge '+(unlocked?'badge-live':'badge-lock')+'">'+(unlocked?'Disponível':'Bloqueado')+'</div></div>'
       +(!canClick?'<div class="locked-overlay"><span>🔒 '+(loggedIn?'Insira o código':'Faça login')+'</span></div>':'')
